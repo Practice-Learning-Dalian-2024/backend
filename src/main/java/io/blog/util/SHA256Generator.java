@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
 import java.math.BigInteger;
+import java.util.Scanner;
 
 public class SHA256Generator {
 
@@ -30,5 +31,22 @@ public class SHA256Generator {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void main(String[] args) {
+        boolean continueLoop = true;
+        do {
+            System.out.print("Enter a string to generate its SHA-256 hash: ");
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            String hash = generateSHA256Hash(input);
+            System.out.println("The SHA-256 hash is: ");
+            System.out.println(hash);
+            System.out.print("Enter to continue, 'q' to quit: ");
+            String next = scanner.nextLine();
+            if (next.equals("q")) {
+                continueLoop = false;
+            }
+        } while (continueLoop);
     }
 }
