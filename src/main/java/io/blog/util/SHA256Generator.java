@@ -1,0 +1,34 @@
+package io.blog.util;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.nio.charset.StandardCharsets;
+import java.math.BigInteger;
+
+public class SHA256Generator {
+
+    public static String generateSHA256Hash(String input) {
+        try {
+            // Create a MessageDigest instance for SHA-256
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+            // Convert the input string to bytes and update the MessageDigest
+            byte[] hash = md.digest(input.getBytes(StandardCharsets.UTF_8));
+
+            // Convert the byte array into a signum representation
+            BigInteger number = new BigInteger(1, hash);
+
+            // Convert the message digest into a hex value
+            StringBuilder hexString = new StringBuilder(number.toString(16));
+
+            // Pad with leading zeros to get a 64-character hash
+            while (hexString.length() < 64) {
+                hexString.insert(0, '0');
+            }
+
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
