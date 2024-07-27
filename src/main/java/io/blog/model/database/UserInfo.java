@@ -2,6 +2,9 @@ package io.blog.model.database;
 
 import lombok.Data;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 /*
 CREATE TABLE IF NOT EXISTS user_info
 (
@@ -24,11 +27,11 @@ CREATE TABLE IF NOT EXISTS user_info
 
 @Data
 public class UserInfo {
-
     private int id;
     private boolean cancelled;
     private String username;
     private String name;
+    private Date birthday;
     private boolean role;
     private String gender;
     private String salt;
