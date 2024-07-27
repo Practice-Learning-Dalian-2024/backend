@@ -31,10 +31,10 @@ public class UserService {
 
     public boolean updatePassword
             (int id, String oldPassword, String newPassword) {
-        throw new RuntimeException("TODO");
+        throw new RuntimeException("TODO"); // TODO
     }
 
     public void updateInformation(UserInfo info) {
-        throw new RuntimeException("TODO");
+        throw new RuntimeException("TODO"); // TODO
     }
 }
