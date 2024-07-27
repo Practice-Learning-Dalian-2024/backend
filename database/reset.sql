@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS user_info
     cancelled     BOOLEAN            NOT NULL DEFAULT FALSE,
     username      VARCHAR(40) UNIQUE NOT NULL,
     name          VARCHAR(70),
+    birthday      DATE,
     role          BOOLEAN            NOT NULL DEFAULT FALSE,
     gender        VARCHAR(255)       NOT NULL DEFAULT 'uncertain',
     salt          CHAR(16)           NOT NULL,
