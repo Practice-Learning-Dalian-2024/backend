@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- File: src/main/resources/mapper/UserMapper.xml -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.blog.mapper.UserMapper">
+
+    <insert id="create">
+        INSERT INTO user_info (username, name, salt, password_hash)
+        VALUES (#{username}, #{password}, #{salt}, #{passwordHash})
+    </insert>
+
+    <update id="update">
+        UPDATE user_info
+        SET username = #{username}, name = #{name}, gender = #{gender},
+                avatar_path = #{avatarPath}, email = #{email}, phone = #{phone},
+                site = #{site}, bio = #{bio}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updatePassword">
+        UPDATE user_info
+        SET salt = #{salt}, password_hash = #{passwordHash}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM user_info WHERE id = #{id}
+    </delete>
+
+    <select id="read" resultType="io.blog.model.response.UserCommonInfo">
+        SELECT id, cancelled, username, name, role, gender, register_time,
+               avatar_path, email, phone, site, bio
+        FROM user_info WHERE id = #{id}
+    </select>
+
+    <select id="readAll" resultType="io.blog.model.response.UserCommonInfo">
+        SELECT id, cancelled, username, name, role, gender, register_time,
+               avatar_path, email, phone, site, bio
+        FROM user_info
+    </select>
+</mapper>
