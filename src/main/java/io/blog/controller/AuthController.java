@@ -1,4 +1,4 @@
-package io.blog.Controller;
+package io.blog.controller;
 
 import io.blog.util.Response;
 import org.springframework.web.bind.annotation.CrossOrigin;
