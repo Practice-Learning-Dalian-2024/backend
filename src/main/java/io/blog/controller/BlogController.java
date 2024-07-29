@@ -1,12 +1,26 @@
 package io.blog.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import io.blog.model.request.BlogRequestDTO;
+import io.blog.service.BlogService;
 import io.blog.util.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/blog")
 public class BlogController {
+    private final BlogService service;
+
+    @Autowired
+    public BlogController(BlogService service) {
+        this.service = service;
+
+    }
     // TODO
     @GetMapping("/{id}")
     public Response<?> getBlog(@PathVariable int id) {
@@ -19,17 +33,22 @@ public class BlogController {
     }
 
     @PostMapping("/new")
-    public Response<?> newBlog(@RequestBody String content) {
+    public Response<?> newBlog(@RequestBody BlogRequestDTO blog) {
         throw new RuntimeException("TODO"); // TODO
     }
 
     @PutMapping("/edit")
-    public Response<?> editBlog(@RequestBody String content) {
+    public Response<?> editBlog(@RequestBody BlogRequestDTO blog) {
         throw new RuntimeException("TODO"); // TODO
     }
 
     @DeleteMapping("/del")
-    public Response<?> deleteBlog(@RequestBody String content) {
+    public Response<?> deleteBlog(@RequestBody String content) throws JsonProcessingException {
+        JsonNode jn = new ObjectMapper().readTree(content);
+        int id = jn.get("id").asInt();
+
+        service.delete(id);
+
         throw new RuntimeException("TODO"); // TODO
     }
 
