@@ -1,9 +1,13 @@
 package io.blog.model.response;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class UserCommonInfo {
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserResponseDTO {
     private int id;
     private boolean canceled;
     private String username;
