@@ -5,5 +5,48 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="io.blog.mapper.BlogMapper">
+    <insert id="create">
+        INSERT INTO blog (author, title, content_path, category, brief)
+        VALUES (#{author}, #{title}, #{contentPath}, #{category}, #{brief})
+    </insert>
 
+    <delete id="delete">
+        DELETE
+        FROM blog
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update">
+        UPDATE blog
+        SET title       = #{title},
+            category    = #{category},
+            brief       = #{brief},
+            content_path= #{contentPath}
+        WHERE id = #{id}
+    </update>
+
+    <select id="read">
+        SELECT id,
+               author,
+               title,
+               content_path,
+               time,
+               category,
+               status,
+               brief
+        FROM blog
+        WHERE id = #{id}
+    </select>
+
+    <select id="readAll">
+        SELECT id,
+               author,
+               title,
+               content_path,
+               time,
+               category,
+               status,
+               brief
+        FROM blog
+    </select>
 </mapper>

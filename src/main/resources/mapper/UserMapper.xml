@@ -39,7 +39,7 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="read" resultType="io.blog.model.response.UserCommonInfo">
+    <select id="read" resultType="io.blog.model.response.UserResponseDTO">
         SELECT id,
                cancelled,
                username,
@@ -56,7 +56,7 @@
         WHERE id = #{id}
     </select>
 
-    <select id="readAll" resultType="io.blog.model.response.UserCommonInfo">
+    <select id="readAll" resultType="io.blog.model.response.UserResponseDTO">
         SELECT id,
                cancelled,
                username,
