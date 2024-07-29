@@ -1,7 +1,7 @@
 package io.blog.mapper;
 
 import io.blog.model.database.UserInfo;
-import io.blog.model.response.UserCommonInfo;
+import io.blog.model.response.UserResponseDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,9 +15,9 @@ public interface UserMapper {
 
     void delete(int id);
 
-    UserCommonInfo read(int id);
+    UserResponseDTO read(int id);
 
-    List<UserCommonInfo> readAll();
+    List<UserResponseDTO> readAll();
 
     void updatePassword(int id, String salt, String passwordHash);
 }

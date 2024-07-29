@@ -1,7 +1,6 @@
 package io.blog.controller;
 
 import io.blog.util.Response;
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
