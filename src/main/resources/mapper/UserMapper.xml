@@ -15,31 +15,60 @@
 
     <update id="update">
         UPDATE user_info
-        SET username = #{username}, name = #{name}, gender = #{gender},
-                avatar_path = #{avatarPath}, email = #{email}, phone = #{phone},
-                site = #{site}, bio = #{bio}
+        SET username    = #{username},
+            name        = #{name},
+            gender      = #{gender},
+            avatar_path = #{avatarPath},
+            email       = #{email},
+            phone       = #{phone},
+            site        = #{site},
+            bio         = #{bio}
         WHERE id = #{id}
     </update>
 
     <update id="updatePassword">
         UPDATE user_info
-        SET salt = #{salt}, password_hash = #{passwordHash}
+        SET salt          = #{salt},
+            password_hash = #{passwordHash}
         WHERE id = #{id}
     </update>
 
     <delete id="delete">
-        DELETE FROM user_info WHERE id = #{id}
+        DELETE
+        FROM user_info
+        WHERE id = #{id}
     </delete>
 
     <select id="read" resultType="io.blog.model.response.UserCommonInfo">
-        SELECT id, cancelled, username, name, role, gender, register_time,
-               avatar_path, email, phone, site, bio
-        FROM user_info WHERE id = #{id}
+        SELECT id,
+               cancelled,
+               username,
+               name,
+               role,
+               gender,
+               register_time,
+               avatar_path,
+               email,
+               phone,
+               site,
+               bio
+        FROM user_info
+        WHERE id = #{id}
     </select>
 
     <select id="readAll" resultType="io.blog.model.response.UserCommonInfo">
-        SELECT id, cancelled, username, name, role, gender, register_time,
-               avatar_path, email, phone, site, bio
+        SELECT id,
+               cancelled,
+               username,
+               name,
+               role,
+               gender,
+               register_time,
+               avatar_path,
+               email,
+               phone,
+               site,
+               bio
         FROM user_info
     </select>
 </mapper>

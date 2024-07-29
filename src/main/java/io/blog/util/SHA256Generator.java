@@ -1,9 +1,9 @@
 package io.blog.util;
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.nio.charset.StandardCharsets;
-import java.math.BigInteger;
 import java.util.Scanner;
 
 public class SHA256Generator {
