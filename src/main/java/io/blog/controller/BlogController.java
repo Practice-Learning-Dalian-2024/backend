@@ -3,7 +3,6 @@ package io.blog.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import io.blog.model.request.BlogRequestDTO;
 import io.blog.service.BlogService;
 import io.blog.util.Response;
@@ -21,6 +20,7 @@ public class BlogController {
         this.service = service;
 
     }
+
     // TODO
     @GetMapping("/{id}")
     public Response<?> getBlog(@PathVariable int id) {

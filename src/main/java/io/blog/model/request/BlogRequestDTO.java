@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlogRequestDTO {
-//    INSERT INTO blog (author, title, content_path, category, brief)
+    //    INSERT INTO blog (author, title, content_path, category, brief)
 //    VALUES (#{author}, #{title}, #{contentPath}, #{category}, #{brief})
     private int author;
     private String title;
