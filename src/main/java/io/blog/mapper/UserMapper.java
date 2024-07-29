@@ -2,7 +2,9 @@ package io.blog.mapper;
 
 import io.blog.model.database.UserInfo;
 import io.blog.model.response.UserResponseDTO;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -20,4 +22,7 @@ public interface UserMapper {
     List<UserResponseDTO> readAll();
 
     void updatePassword(int id, String salt, String passwordHash);
+
+    @Select("select * from user_info where username = #{username}")
+    UserInfo findByUserName(String username);//查找用户名是否存在
 }

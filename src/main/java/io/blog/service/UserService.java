@@ -37,4 +37,10 @@ public class UserService {
     public void updateInformation(UserInfo info) {
         throw new RuntimeException("TODO"); // TODO
     }
+
+
+    public UserInfo findByUserName(String username) {
+        UserInfo u = mapper.findByUserName(username);
+        return u;
+    }
 }
