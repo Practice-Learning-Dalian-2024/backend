@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS user_info;
+DROP TABLE IF EXISTS user_info CASCADE;
 CREATE TABLE IF NOT EXISTS user_info
 (
     id            SERIAL PRIMARY KEY,
@@ -18,21 +18,21 @@ CREATE TABLE IF NOT EXISTS user_info
     bio           TEXT
 );
 
-DROP TABLE IF EXISTS common_user;
+DROP TABLE IF EXISTS common_user CASCADE;
 CREATE TABLE IF NOT EXISTS common_user
 (
     id      SERIAL PRIMARY KEY,
     user_id INT REFERENCES user_info (id) ON DELETE CASCADE NOT NULL
 );
 
-DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS admin CASCADE;
 CREATE TABLE IF NOT EXISTS admin
 (
     id      SERIAL PRIMARY KEY,
     user_id INT REFERENCES user_info (id) ON DELETE CASCADE NOT NULL
 );
 
-DROP TABLE IF EXISTS blog;
+DROP TABLE IF EXISTS blog CASCADE;
 CREATE TABLE IF NOT EXISTS blog
 (
     id            SERIAL PRIMARY KEY,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS blog
     brief         VARCHAR(255)                  NOT NULL
 );
 
-DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS comment CASCADE;
 CREATE TABLE IF NOT EXISTS comment
 (
     id         SERIAL PRIMARY KEY,
@@ -59,4 +59,12 @@ CREATE TABLE IF NOT EXISTS comment
     time       TIMESTAMP                                  NOT NULL DEFAULT CURRENT_TIMESTAMP,
     like_count INT                                        NOT NULL DEFAULT 0,
     status     SMALLINT                                   NOT NULL DEFAULT 0
+);
+
+DROP TABLE IF EXISTS like_record CASCADE;
+CREATE TABLE IF NOT EXISTS like_record
+(
+    id      SERIAL PRIMARY KEY,
+    user_id INT REFERENCES user_info (id) ON DELETE CASCADE NOT NULL,
+    blog_id INT REFERENCES blog (id) ON DELETE CASCADE      NOT NULL
 );
