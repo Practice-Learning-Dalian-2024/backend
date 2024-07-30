@@ -2,6 +2,7 @@ package io.blog.service;
 
 import io.blog.mapper.UserMapper;
 import io.blog.model.database.UserInfo;
+import io.blog.model.response.UserResponseDTO;
 import io.blog.util.RandomStringGenerator;
 import io.blog.util.SHA256Generator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,14 @@ public class UserService {
 
     public boolean getRole(String username) {
         return mapper.getIsAdmin(username);
+    }
+
+    public boolean checkIfUserIdExists(String userId) {
+        Integer id = mapper.findUserId(Integer.parseInt(userId));
+        return id != null;
+    }
+
+    public UserResponseDTO UserInfoReturn(int id) {
+        return mapper.read(id);
     }
 }

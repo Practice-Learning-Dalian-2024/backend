@@ -95,4 +95,10 @@
         FROM user_info
         WHERE username = #{username}
     </select>
+
+    <select id="findUserId" resultType="int">
+        SELECT id
+        FROM user_info
+        WHERE id = #{id}
+    </select>
 </mapper>

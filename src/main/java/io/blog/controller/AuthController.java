@@ -3,6 +3,7 @@ package io.blog.controller;
 import io.blog.model.request.LoginRequestDTO;
 import io.blog.model.request.RegisterRequestDTO;
 import io.blog.model.response.LoginResponseDTO;
+import io.blog.model.response.UserResponseDTO;
 import io.blog.service.UserService;
 import io.blog.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,18 @@ public class AuthController {
         } else {
             return new Response<>
                     (409, "Username already exists", null);
+        }
+    }
+
+    @GetMapping("/user/{user_id}")
+    public Response<?> UserInfo(@PathVariable String user_id){
+        boolean IfExist = userService.checkIfUserIdExists(user_id);
+        if(IfExist){
+            UserResponseDTO resp = userService.UserInfoReturn
+                    (Integer.parseInt(user_id));
+            return new Response<>(200,"Successfully",resp);
+        }else {
+            return new Response<>(404,"Not Found",null);
         }
     }
 }
