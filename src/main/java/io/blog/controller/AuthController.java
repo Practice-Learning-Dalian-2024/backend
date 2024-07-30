@@ -1,4 +1,4 @@
-package io.blog.Controller;
+package io.blog.controller;
 
 import io.blog.model.database.UserInfo;
 import io.blog.service.UserService;

@@ -49,7 +49,7 @@ public class BlogController {
 
         service.delete(id);
 
-        throw new RuntimeException("TODO"); // TODO
+        return new Response<>(200, "Deleted", null);
     }
 
     @PostMapping("/like")
