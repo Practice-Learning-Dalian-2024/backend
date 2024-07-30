@@ -72,7 +72,7 @@
         FROM user_info
     </select>
 
-    <select id="findUserName">
+    <select id="findUsername">
         SELECT username
         FROM user_info
         WHERE username = #{username}
