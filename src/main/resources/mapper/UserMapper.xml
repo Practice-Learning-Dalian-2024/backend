@@ -93,6 +93,6 @@
     <select id="getIsAdmin" resultType="boolean">
         SELECT role
         FROM user_info
-        WHERE id = #{id}
+        WHERE username = #{username}
     </select>
 </mapper>
