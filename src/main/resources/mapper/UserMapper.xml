@@ -9,8 +9,8 @@
 <mapper namespace="io.blog.mapper.UserMapper">
 
     <insert id="create">
-        INSERT INTO user_info (username, salt, password_hash)
-        VALUES (#{username}, #{salt}, #{passwordHash})
+        INSERT INTO user_info (username, salt, password_hash,register_time)
+        VALUES (#{username}, #{salt}, #{passwordHash},now())
     </insert>
 
     <update id="update">
