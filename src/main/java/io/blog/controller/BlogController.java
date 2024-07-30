@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.blog.model.request.BlogRequestDTO;
+import io.blog.model.request.CommentRequestDTO;
+import io.blog.model.request.LikeRequestDTO;
 import io.blog.service.BlogService;
 import io.blog.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ public class BlogController {
 
     }
 
-    // TODO
     @GetMapping("/{id}")
     public Response<?> getBlog(@PathVariable int id) {
         throw new RuntimeException("TODO"); // TODO
@@ -53,12 +54,12 @@ public class BlogController {
     }
 
     @PostMapping("/like")
-    public Response<?> likeBlog(@RequestBody String content) {
+    public Response<?> likeBlog(@RequestBody LikeRequestDTO like) {
         throw new RuntimeException("TODO"); // TODO
     }
 
     @PostMapping("/comment")
-    public Response<?> commentBlog(@RequestBody String content) {
+    public Response<?> commentBlog(@RequestBody CommentRequestDTO comment) {
         throw new RuntimeException("TODO"); // TODO
     }
 }

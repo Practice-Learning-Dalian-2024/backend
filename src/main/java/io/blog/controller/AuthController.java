@@ -2,7 +2,6 @@ package io.blog.controller;
 
 import io.blog.service.UserService;
 import io.blog.util.Response;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/")
 public class AuthController {
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public AuthController(UserService service) {
@@ -27,14 +26,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public Response<?> register(String username,String password) {
+    public Response<?> register(String username, String password) {
         // TODO
-        // 判断用户名是否重复
         boolean notExist = userService.checkIfUsernameExists(username);
-        if(notExist){
-            userService.register(username,password);
+        if (notExist) {
+            userService.register(username, password);
             return new Response<>(200, "Successfully registered", null);
-        }else {
+        } else {
             return new Response<>(409, "Username already exists", null);
         }
     }

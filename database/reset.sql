@@ -17,21 +17,18 @@ CREATE TABLE IF NOT EXISTS user_info
     site          VARCHAR(255),
     bio           TEXT
 );
-
 DROP TABLE IF EXISTS common_user CASCADE;
 CREATE TABLE IF NOT EXISTS common_user
 (
     id      SERIAL PRIMARY KEY,
     user_id INT REFERENCES user_info (id) ON DELETE CASCADE NOT NULL
 );
-
 DROP TABLE IF EXISTS admin CASCADE;
 CREATE TABLE IF NOT EXISTS admin
 (
     id      SERIAL PRIMARY KEY,
     user_id INT REFERENCES user_info (id) ON DELETE CASCADE NOT NULL
 );
-
 DROP TABLE IF EXISTS blog CASCADE;
 CREATE TABLE IF NOT EXISTS blog
 (
@@ -46,7 +43,6 @@ CREATE TABLE IF NOT EXISTS blog
     status        SMALLINT                      NOT NULL DEFAULT 0,
     brief         VARCHAR(255)                  NOT NULL
 );
-
 DROP TABLE IF EXISTS comment CASCADE;
 CREATE TABLE IF NOT EXISTS comment
 (
@@ -60,7 +56,6 @@ CREATE TABLE IF NOT EXISTS comment
     like_count INT                                        NOT NULL DEFAULT 0,
     status     SMALLINT                                   NOT NULL DEFAULT 0
 );
-
 DROP TABLE IF EXISTS like_record CASCADE;
 CREATE TABLE IF NOT EXISTS like_record
 (
