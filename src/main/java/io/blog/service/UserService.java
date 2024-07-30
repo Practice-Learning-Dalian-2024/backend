@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public void updateInformation(UserInfo info) {
-        throw new RuntimeException("TODO"); // TODO
+        mapper.update(info);
     }
 
     public boolean checkIfUsernameExists(String username) {
@@ -64,4 +64,5 @@ public class UserService {
     public UserResponseDTO UserInfoReturn(int id) {
         return mapper.read(id);
     }
+
 }

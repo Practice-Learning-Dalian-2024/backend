@@ -30,4 +30,5 @@ public interface UserMapper {
     boolean getIsAdmin(String username);
 
     Integer findUserId(int id);
+
 }

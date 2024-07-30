@@ -1,5 +1,6 @@
 package io.blog.controller;
 
+import io.blog.model.database.UserInfo;
 import io.blog.model.request.LoginRequestDTO;
 import io.blog.model.request.RegisterRequestDTO;
 import io.blog.model.response.LoginResponseDTO;
@@ -63,5 +64,11 @@ public class AuthController {
         }else {
             return new Response<>(404,"Not Found",null);
         }
+    }
+
+    @PutMapping("/user/edit")
+    public Response<?> edit(@RequestBody UserInfo userInfo){
+        userService.updateInformation(userInfo);
+        return new Response<>(200,"Successfully",userInfo);
     }
 }
