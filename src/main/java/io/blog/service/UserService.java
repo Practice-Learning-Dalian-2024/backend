@@ -16,7 +16,7 @@ public class UserService {
         this.mapper = mapper;
     }
 
-    public int register(String username, String password) {
+    public void register(String username, String password) {
         String salt = RandomStringGenerator.generateRandomString(16);
         String saltedPassword = password + salt;
         String hash = SHA256Generator.generateSHA256Hash(saltedPassword);
@@ -26,7 +26,6 @@ public class UserService {
         info.setSalt(salt);
         mapper.create(info);
         // TODO
-        return 0;
     }
 
     public boolean updatePassword
@@ -37,7 +36,6 @@ public class UserService {
     public void updateInformation(UserInfo info) {
         throw new RuntimeException("TODO"); // TODO
     }
-
 
     public boolean checkIfUsernameExists(String username) {
         String str = mapper.findUsername(username);
