@@ -77,4 +77,16 @@
         FROM user_info
         WHERE username = #{username}
     </select>
+
+    <select id="findUserSalt" resultType="string">
+        SELECT salt
+        FROM user_info
+        WHERE username = #{username}
+    </select>
+
+    <select id="findUserHash" resultType="string">
+        SELECT password_hash
+        FROM user_info
+        WHERE username = #{username}
+    </select>
 </mapper>
