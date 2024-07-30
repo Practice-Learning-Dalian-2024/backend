@@ -71,4 +71,10 @@
                bio
         FROM user_info
     </select>
+
+    <select>
+        SELECT username
+        FROM user_info
+        WHERE username = #{username}
+    </select>
 </mapper>

@@ -1,9 +1,9 @@
 package io.blog.controller;
 
-import io.blog.model.database.UserInfo;
 import io.blog.service.UserService;
 import io.blog.util.Response;
-import org.apache.catalina.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/")
 public class AuthController {
-
-
     private UserService userService;
+
+    @Autowired
+    public AuthController(UserService service) {
+        this.userService = service;
+    }
 
     @PostMapping("/login")
     public Response<?> login() {
@@ -26,13 +29,13 @@ public class AuthController {
     @PostMapping("/register")
     public Response<?> register(String username,String password) {
         // TODO
-        //判断用户名是否重复
-        UserInfo userInfo = userService.findByUserName(username);
-        if(userInfo == null){
+        // 判断用户名是否重复
+        boolean notExist = userService.checkIfUsernameExists(username);
+        if(notExist){
             userService.register(username,password);
-            return Response.success();
+            return new Response<>(200, "Successfully registered", null);
         }else {
-            return Response.error("用户名已存在");
+            return new Response<>(409, "Username already exists", null);
         }
     }
 }

@@ -39,8 +39,8 @@ public class UserService {
     }
 
 
-    public UserInfo findByUserName(String username) {
-        UserInfo u = mapper.findByUserName(username);
-        return u;
+    public boolean checkIfUsernameExists(String username) {
+        String str = mapper.findUsername(username);
+        return str == null;
     }
 }
