@@ -49,4 +49,23 @@
                brief
         FROM blog
     </select>
+
+    <insert id="likeBlog">
+        INSERT INTO like_record (blog_id, user_id)
+        VALUES (#{blogId}, #{userId})
+    </insert>
+
+    <delete id="unlikeBlog">
+        DELETE
+        FROM like_record
+        WHERE blog_id = #{blogId}
+          AND user_id = #{userId}
+    </delete>
+
+    <select id="ifLikeBlog" resultType="boolean">
+        SELECT CASE WHEN COUNT(1) > 0 THEN TRUE ELSE FALSE END
+        FROM like_record
+        WHERE blog_id = #{blogId}
+          AND user_id = #{userId}
+    </select>
 </mapper>

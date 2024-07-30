@@ -2,6 +2,7 @@ package io.blog.service;
 
 import io.blog.mapper.BlogMapper;
 import io.blog.model.request.BlogRequestDTO;
+import io.blog.model.request.LikeRequestDTO;
 import io.blog.model.response.BlogResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +39,13 @@ public class BlogService {
 
     public List<BlogResponseDTO> readAll() {
         return mapper.readAll();
+    }
+
+    public void like(LikeRequestDTO like) {
+        if (mapper.ifLikeBlog(like)) {
+            mapper.unlikeBlog(like);
+        } else {
+            mapper.likeBlog(like);
+        }
     }
 }
