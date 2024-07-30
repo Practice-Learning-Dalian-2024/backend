@@ -101,7 +101,7 @@ public class AuthController {
                 (username, oldPwd);
         if (equalPassword) {
              userService.updatePassword(Integer.parseInt(id),oldPwd,newPwd);
-             return new Response<>(200,"Successfully",null);
+             return new Response<>(200,"Successfully update",null);
         } else {
             return new Response<>
                     (401, "Incorrect  OldPassword", null);

@@ -31,7 +31,10 @@ public class UserService {
 
     public void updatePassword
             (int id, String oldPassword, String newPassword) {
-        mapper.updatePassword(id,oldPassword,newPassword);
+        String salt = RandomStringGenerator.generateRandomString(16);
+        String saltedPassword = newPassword + salt;
+        String hash = SHA256Generator.generateSHA256Hash(saltedPassword);
+        mapper.updatePassword(id,salt,hash);
     }
 
     public void updateInformation(UserInfo info) {
