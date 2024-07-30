@@ -1,6 +1,7 @@
 package io.blog.mapper;
 
 import io.blog.model.request.BlogRequestDTO;
+import io.blog.model.request.LikeRequestDTO;
 import io.blog.model.response.BlogResponseDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,4 +18,14 @@ public interface BlogMapper {
     BlogResponseDTO read(int id);
 
     List<BlogResponseDTO> readAll();
+
+    void likeBlog(LikeRequestDTO like);
+
+    void unlikeBlog(LikeRequestDTO like);
+
+    boolean ifLikeBlog(LikeRequestDTO like);
+
+    void likeBlogCount(int blogId);
+
+    void unlikeBlogCount(int blogId);
 }

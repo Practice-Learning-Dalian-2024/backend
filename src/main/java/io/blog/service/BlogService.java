@@ -2,6 +2,7 @@ package io.blog.service;
 
 import io.blog.mapper.BlogMapper;
 import io.blog.model.request.BlogRequestDTO;
+import io.blog.model.request.LikeRequestDTO;
 import io.blog.model.response.BlogResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,10 +34,22 @@ public class BlogService {
     }
 
     public BlogResponseDTO read(int id) {
-        return mapper.read(id);
+        BlogResponseDTO blog = mapper.read(id);
+        throw new RuntimeException("TODO"); // TODO
     }
 
     public List<BlogResponseDTO> readAll() {
         return mapper.readAll();
+    }
+
+    public void like(LikeRequestDTO like) {
+        int blogId = like.getBlogId();
+        if (mapper.ifLikeBlog(like)) {
+            mapper.unlikeBlog(like);
+            mapper.unlikeBlogCount(blogId);
+        } else {
+            mapper.likeBlog(like);
+            mapper.likeBlogCount(blogId);
+        }
     }
 }

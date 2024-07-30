@@ -59,7 +59,8 @@ public class BlogController {
 
     @PostMapping("/like")
     public Response<?> likeBlog(@RequestBody LikeRequestDTO like) {
-        throw new RuntimeException("TODO"); // TODO
+        service.like(like);
+        return new Response<>(200, "OK", null);
     }
 
     @PostMapping("/comment")
