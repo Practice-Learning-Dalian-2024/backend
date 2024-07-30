@@ -1,5 +1,6 @@
 package io.blog.controller;
 
+import io.blog.model.request.LoginRequestDTO;
 import io.blog.model.request.RegisterRequestDTO;
 import io.blog.service.UserService;
 import io.blog.util.Response;
@@ -18,9 +19,19 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public Response<?> login() {
+    public Response<?> login(@RequestBody LoginRequestDTO log) {
         // TODO
-        return null;
+        boolean notExist = userService.checkIfUsernameExists(log.getUsername());
+        if(notExist){
+            return new Response<>(404,"Not Found",null);
+        }
+
+        boolean equalPassword = userService.checkPassword(log.getUsername(), log.getPassword());
+        if(equalPassword){
+            return new Response<>(200,"Successfully login",null);
+        }else {
+            return new Response<>(401,"Unauthorized",null);
+        }
     }
 
     @PostMapping("/register")

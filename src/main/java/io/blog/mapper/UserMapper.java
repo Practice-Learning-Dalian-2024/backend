@@ -22,4 +22,8 @@ public interface UserMapper {
     void updatePassword(int id, String salt, String passwordHash);
 
     String findUsername(String username);
+
+    String findUserSalt(String username);
+
+    String findUserHash(String username);
 }

@@ -41,4 +41,13 @@ public class UserService {
         String str = mapper.findUsername(username);
         return str == null;
     }
+
+    public boolean checkPassword(String username,String password) {
+
+        String salt = mapper.findUserSalt(username);
+        String saltedPassword = password + salt;
+        String hash = mapper.findUserHash(username);
+
+        return hash.equals(SHA256Generator.generateSHA256Hash(saltedPassword));
+    }
 }
