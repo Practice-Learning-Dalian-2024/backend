@@ -23,14 +23,14 @@ public class AuthController {
         // TODO
         boolean notExist = userService.checkIfUsernameExists(log.getUsername());
         if(notExist){
-            return new Response<>(404,"Not Found",null);
+            return new Response<>(401,"Incorrect username or password",null);
         }
 
         boolean equalPassword = userService.checkPassword(log.getUsername(), log.getPassword());
         if(equalPassword){
             return new Response<>(200,"Successfully login",null);
         }else {
-            return new Response<>(401,"Unauthorized",null);
+            return new Response<>(401,"Incorrect username or password",null);
         }
     }
 
