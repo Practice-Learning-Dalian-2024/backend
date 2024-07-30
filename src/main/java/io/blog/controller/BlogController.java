@@ -20,7 +20,6 @@ public class BlogController {
     @Autowired
     public BlogController(BlogService service) {
         this.service = service;
-
     }
 
     @GetMapping("/{id}")
@@ -35,16 +34,19 @@ public class BlogController {
 
     @PostMapping("/new")
     public Response<?> newBlog(@RequestBody BlogRequestDTO blog) {
-        throw new RuntimeException("TODO"); // TODO
+        service.create(blog);
+        return new Response<>(201, "Created", null);
     }
 
     @PutMapping("/edit")
     public Response<?> editBlog(@RequestBody BlogRequestDTO blog) {
-        throw new RuntimeException("TODO"); // TODO
+        service.update(blog);
+        return new Response<>(200, "Updated", null);
     }
 
     @DeleteMapping("/del")
-    public Response<?> deleteBlog(@RequestBody String content) throws JsonProcessingException {
+    public Response<?> deleteBlog(@RequestBody String content)
+            throws JsonProcessingException {
         JsonNode jn = new ObjectMapper().readTree(content);
         int id = jn.get("id").asInt();
 
