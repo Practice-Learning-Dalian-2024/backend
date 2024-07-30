@@ -42,12 +42,16 @@ public class UserService {
         return str == null;
     }
 
-    public boolean checkPassword(String username,String password) {
+    public boolean checkPassword(String username, String password) {
 
         String salt = mapper.findUserSalt(username);
         String saltedPassword = password + salt;
         String hash = mapper.findUserHash(username);
 
         return hash.equals(SHA256Generator.generateSHA256Hash(saltedPassword));
+    }
+
+    public boolean getRole(String username) {
+        return mapper.getIsAdmin(username);
     }
 }

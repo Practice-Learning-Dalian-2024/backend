@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.blog.model.request.BlogRequestDTO;
 import io.blog.model.request.CommentRequestDTO;
 import io.blog.model.request.LikeRequestDTO;
+import io.blog.model.response.BlogResponseDTO;
 import io.blog.service.BlogService;
 import io.blog.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class BlogController {
 
     @GetMapping("/{id}")
     public Response<?> getBlog(@PathVariable int id) {
-        throw new RuntimeException("TODO"); // TODO
+        BlogResponseDTO blog = service.read(id);
+        return new Response<>(200, "OK", blog);
     }
 
     @GetMapping("/dashboard/{id}")

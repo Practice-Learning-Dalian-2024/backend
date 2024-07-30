@@ -26,4 +26,6 @@ public interface UserMapper {
     String findUserSalt(String username);
 
     String findUserHash(String username);
+
+    boolean getIsAdmin(String username);
 }
