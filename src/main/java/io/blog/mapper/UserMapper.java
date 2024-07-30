@@ -27,5 +27,5 @@ public interface UserMapper {
 
     String findUserHash(String username);
 
-    boolean getIsAdmin(String username);
+    boolean getIsAdmin(int id);
 }
