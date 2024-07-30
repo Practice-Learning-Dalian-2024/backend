@@ -24,4 +24,8 @@ public interface BlogMapper {
     void unlikeBlog(LikeRequestDTO like);
 
     boolean ifLikeBlog(LikeRequestDTO like);
+
+    void likeBlogCount(int blogId);
+
+    void unlikeBlogCount(int blogId);
 }

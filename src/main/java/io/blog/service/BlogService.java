@@ -34,7 +34,8 @@ public class BlogService {
     }
 
     public BlogResponseDTO read(int id) {
-        return mapper.read(id);
+        BlogResponseDTO blog = mapper.read(id);
+        throw new RuntimeException("TODO"); // TODO
     }
 
     public List<BlogResponseDTO> readAll() {
@@ -42,10 +43,13 @@ public class BlogService {
     }
 
     public void like(LikeRequestDTO like) {
+        int blogId = like.getBlogId();
         if (mapper.ifLikeBlog(like)) {
             mapper.unlikeBlog(like);
+            mapper.unlikeBlogCount(blogId);
         } else {
             mapper.likeBlog(like);
+            mapper.likeBlogCount(blogId);
         }
     }
 }
