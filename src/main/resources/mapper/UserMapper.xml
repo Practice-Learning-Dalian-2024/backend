@@ -9,8 +9,8 @@
 <mapper namespace="io.blog.mapper.UserMapper">
 
     <insert id="create">
-        INSERT INTO user_info (username, salt, password_hash,register_time)
-        VALUES (#{username}, #{salt}, #{passwordHash},now())
+        INSERT INTO user_info (username, salt, password_hash)
+        VALUES (#{username}, #{salt}, #{passwordHash})
     </insert>
 
     <update id="update">
@@ -102,5 +102,9 @@
         WHERE id = #{id}
     </select>
 
-
+    <select id="findUsernameByUserId" resultType="string">
+        SELECT username
+        FROM user_info
+        WHERE id = #{id}
+    </select>
 </mapper>

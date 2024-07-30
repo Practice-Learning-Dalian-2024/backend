@@ -2,12 +2,14 @@ package io.blog.controller;
 
 import io.blog.model.database.UserInfo;
 import io.blog.model.request.LoginRequestDTO;
+import io.blog.model.request.PasswordRequestDTO;
 import io.blog.model.request.RegisterRequestDTO;
 import io.blog.model.response.LoginResponseDTO;
 import io.blog.model.response.UserResponseDTO;
 import io.blog.service.UserService;
 import io.blog.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -70,5 +72,39 @@ public class AuthController {
     public Response<?> edit(@RequestBody UserInfo userInfo){
         userService.updateInformation(userInfo);
         return new Response<>(200,"Successfully",userInfo);
+    }
+
+    @PutMapping("/user/password")
+    public Response<?> password(@RequestBody PasswordRequestDTO pass){
+        String id = pass.getId();
+        String oldPwd = pass.getOldpassword();
+        String newPwd = pass.getNewpassword();
+        String rePwd = pass.getPasswordrepeat();
+
+        if(!StringUtils.hasLength(oldPwd) || !StringUtils.hasLength(newPwd) ||
+        !StringUtils.hasLength(rePwd) || !StringUtils.hasLength(id) ){
+            return new Response<>(400,"Bad Request",null);
+        }
+
+        boolean IfExist = userService.checkIfUserIdExists(id);
+        if(!IfExist){
+            return new Response<>(404,"Not Found",null);
+        }
+
+        if(!rePwd.equals(newPwd)){
+            return new Response<>(400,"Not same Password",null);
+        }
+
+        String username = userService.findUsernameByUserId(id);
+
+        boolean equalPassword = userService.checkPassword
+                (username, oldPwd);
+        if (equalPassword) {
+             userService.updatePassword(Integer.parseInt(id),oldPwd,newPwd);
+             return new Response<>(200,"Successfully",null);
+        } else {
+            return new Response<>
+                    (401, "Incorrect  OldPassword", null);
+        }
     }
 }

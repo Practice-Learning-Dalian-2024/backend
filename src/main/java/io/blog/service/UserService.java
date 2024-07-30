@@ -8,8 +8,6 @@ import io.blog.util.SHA256Generator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class UserService {
     private final UserMapper mapper;
@@ -31,9 +29,9 @@ public class UserService {
         // TODO
     }
 
-    public boolean updatePassword
+    public void updatePassword
             (int id, String oldPassword, String newPassword) {
-        throw new RuntimeException("TODO"); // TODO
+        mapper.updatePassword(id,oldPassword,newPassword);
     }
 
     public void updateInformation(UserInfo info) {
@@ -67,4 +65,8 @@ public class UserService {
         return mapper.read(id);
     }
 
+    public String findUsernameByUserId(String id) {
+        Integer user_id = Integer.parseInt(id);
+        return mapper.findUsernameByUserId(user_id);
+    }
 }
