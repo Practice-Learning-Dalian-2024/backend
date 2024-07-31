@@ -51,7 +51,8 @@
                email,
                phone,
                site,
-               bio
+               bio,
+               birthday
         FROM user_info
         WHERE id = #{id}
     </select>
