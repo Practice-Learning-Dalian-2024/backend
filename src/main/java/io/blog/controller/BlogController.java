@@ -82,4 +82,9 @@ public class BlogController {
     public Response<?> getMostPopularBlogs(@RequestParam int userId) {
         return new Response<>(200, "OK", service.readMostPopularBlogs(userId));
     }
+
+    @GetMapping("/latest/{author}")
+    public Response<?> getLatestBlogsByUser(@PathVariable int author) {
+        return new Response<>(200, "OK", service.readLatestBlogsByUser(author));
+    }
 }
