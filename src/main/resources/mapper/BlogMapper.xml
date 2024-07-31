@@ -36,7 +36,7 @@
                like_count,
                visitor_count
         FROM blog JOIN user_info ON blog.author = user_info.id
-        WHERE id = #{id}
+        WHERE blog.id = #{id}
     </select>
     <select id="readAll" resultType="io.blog.model.response.BlogResponseDTO">
         SELECT blog.id,
