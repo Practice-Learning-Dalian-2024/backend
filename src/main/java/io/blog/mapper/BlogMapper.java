@@ -32,4 +32,6 @@ public interface BlogMapper {
     List<BlogResponseDTO> readByCategory(int category);
 
     List<BlogResponseDTO> readMostPopularBlogs(int userId);
+
+    List<BlogResponseDTO> readLatestBlogsByUser(int author);
 }

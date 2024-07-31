@@ -77,3 +77,11 @@ CREATE TABLE IF NOT EXISTS view_record
     user_id INT REFERENCES user_info (id) ON DELETE CASCADE NOT NULL,
     blog_id INT REFERENCES blog (id) ON DELETE CASCADE      NOT NULL
 );
+
+DROP TABLE IF EXISTS follow CASCADE;
+CREATE TABLE IF NOT EXISTS follow
+(
+    id       SERIAL PRIMARY KEY,
+    follower INT REFERENCES user_info (id) ON DELETE CASCADE NOT NULL,
+    followee INT REFERENCES user_info (id) ON DELETE CASCADE NOT NULL
+);
