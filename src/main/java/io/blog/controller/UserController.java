@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping("/")
-public class AuthController {
+public class UserController {
     private final UserService userService;
 
     @Autowired
-    public AuthController(UserService service) {
+    public UserController(UserService service) {
         this.userService = service;
     }
 
