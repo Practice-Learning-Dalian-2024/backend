@@ -12,7 +12,7 @@ public class BlogResponseDTO {
     private int author;
     private String title;
     private String content_path;
-    private long time;
+    private String time;
     private short category;
     private int visitor_count;
     private int like_count;

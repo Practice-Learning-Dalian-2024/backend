@@ -24,7 +24,7 @@ public class Blog {
     private int author;
     private String title;
     private String contentPath;
-    private long time;
+    private String time;
     private short category;
     private int visitorCount;
     private int likeCount;
