@@ -77,7 +77,7 @@ public class UserService {
     }
 
     public void follow(int follower, int followee) {
-        if(mapper.isFollowing(follower, followee)) {
+        if (mapper.isFollowing(follower, followee)) {
             mapper.unfollow(follower, followee);
         } else {
             mapper.follow(follower, followee);
