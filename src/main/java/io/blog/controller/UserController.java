@@ -112,7 +112,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/follow")
+    @PostMapping("/user/follow")
     public Response<?> follow(@RequestBody FollowRequestDTO follow) {
         service.follow(follow.getFollowerId(), follow.getFolloweeId());
         return new Response<>(200, "Successfully (un)follow", null);
