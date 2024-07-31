@@ -50,6 +50,7 @@
                brief,
                like_count
         FROM blog
+        ORDER BY time DESC
     </select>
 
     <insert id="likeBlog">

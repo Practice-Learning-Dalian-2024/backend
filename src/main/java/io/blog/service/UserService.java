@@ -26,7 +26,6 @@ public class UserService {
         info.setPasswordHash(hash);
         info.setSalt(salt);
         mapper.create(info);
-        // TODO
     }
 
     public void updatePassword

@@ -18,17 +18,14 @@ public class BlogService {
         this.mapper = mapper;
     }
 
-    // TODO: Check if the blog exists
     public void delete(int id) {
         mapper.delete(id);
     }
 
-    // TODO: Check if the blog exists
     public void create(BlogRequestDTO blog) {
         mapper.create(blog);
     }
 
-    // TODO: Check if the blog exists
     public void update(BlogRequestDTO blog) {
         mapper.update(blog);
     }

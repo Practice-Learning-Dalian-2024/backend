@@ -14,8 +14,8 @@ public class BlogResponseDTO {
     private String content_path;
     private long time;
     private short category;
-    private int visitor_count;  // TODO: Need query
-    private int like_count;     // TODO: Need query
+    private int visitor_count;
+    private int like_count;
     private int status;
     private String brief;
 }

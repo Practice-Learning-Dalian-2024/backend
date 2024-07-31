@@ -31,7 +31,7 @@ public class BlogController {
 
     @GetMapping("/dashboard/{id}")
     public Response<?> getDashboard(@PathVariable int id) {
-        throw new RuntimeException("TODO"); // TODO
+        throw new RuntimeException("TODO"); // Deprecated
     }
 
     @PostMapping("/new")
@@ -66,5 +66,10 @@ public class BlogController {
     @PostMapping("/comment")
     public Response<?> commentBlog(@RequestBody CommentRequestDTO comment) {
         throw new RuntimeException("TODO"); // TODO
+    }
+
+    @GetMapping("/latest")
+    public Response<?> getLatestBlogs() {
+        return new Response<>(200, "OK", service.readAll());
     }
 }
