@@ -45,7 +45,7 @@
                status,
                brief,
                like_count,
-                visitor_count
+               visitor_count
         FROM blog
         ORDER BY time DESC
         LIMIT 20
@@ -76,7 +76,8 @@
         SET like_count = like_count - 1
         WHERE id = #{blogId}
     </update>
-    <select id="readByCategory" resultType="io.blog.model.response.BlogResponseDTO">
+    <select id="readByCategory"
+            resultType="io.blog.model.response.BlogResponseDTO">
         SELECT id,
                author,
                title,

@@ -1,11 +1,8 @@
 package io.blog.model.database;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 /*
 CREATE TABLE IF NOT EXISTS user_info
