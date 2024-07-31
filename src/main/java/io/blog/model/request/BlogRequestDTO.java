@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class BlogRequestDTO {
     //    INSERT INTO blog (author, title, content_path, category, brief)
 //    VALUES (#{author}, #{title}, #{contentPath}, #{category}, #{brief})
+    private int id;
     private int author;
     private String title;
     private String contentPath;

@@ -65,4 +65,8 @@ public class BlogService {
     public List<BlogResponseDTO> readBlogsByUser(int author) {
         return mapper.readBlogsByUser(author);
     }
+
+    public List<BlogResponseDTO> readFollowedBlogs(int userId) {
+        return mapper.readFollowedBlogs(userId);
+    }
 }

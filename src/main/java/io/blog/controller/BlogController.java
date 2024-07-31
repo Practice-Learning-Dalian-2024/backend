@@ -92,4 +92,9 @@ public class BlogController {
     public Response<?> getBlogsByUser(@PathVariable int author) {
         return new Response<>(200, "OK", service.readBlogsByUser(author));
     }
+
+    @GetMapping("/follow/{userId}")
+    public Response<?> getFollowedBlogs(@PathVariable int userId) {
+        return new Response<>(200, "OK", service.readFollowedBlogs(userId));
+    }
 }

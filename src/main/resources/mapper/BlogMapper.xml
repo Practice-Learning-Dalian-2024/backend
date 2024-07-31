@@ -156,4 +156,22 @@
         WHERE author = #{author}
         ORDER BY time DESC
     </select>
+    <select id="readFollowedBlogs"
+            resultType="io.blog.model.response.BlogResponseDTO">
+        SELECT blog.id,
+               author,
+               user_info.username,
+               user_info.name,
+               title,
+               content_path,
+               time,
+               category,
+               status,
+               brief,
+               like_count,
+               visitor_count
+        FROM blog JOIN user_info ON blog.author = user_info.id
+                  JOIN follow ON user_info.id = follow.followee
+        WHERE follow.follower = #{userId}
+    </select>
 </mapper>
