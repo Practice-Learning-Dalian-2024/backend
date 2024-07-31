@@ -58,42 +58,42 @@ public class UserController {
     }
 
     @GetMapping("/user/{user_id}")
-    public Response<?> UserInfo(@PathVariable String user_id){
+    public Response<?> UserInfo(@PathVariable String user_id) {
         boolean IfExist = service.checkIfUserIdExists(user_id);
-        if(IfExist){
+        if (IfExist) {
             UserResponseDTO resp = service.UserInfoReturn
                     (Integer.parseInt(user_id));
-            return new Response<>(200,"Successfully",resp);
-        }else {
-            return new Response<>(404,"Not Found",null);
+            return new Response<>(200, "Successfully", resp);
+        } else {
+            return new Response<>(404, "Not Found", null);
         }
     }
 
     @PutMapping("/user/edit")
-    public Response<?> edit(@RequestBody UserInfo userInfo){
+    public Response<?> edit(@RequestBody UserInfo userInfo) {
         service.updateInformation(userInfo);
-        return new Response<>(200,"Successfully",userInfo);
+        return new Response<>(200, "Successfully", userInfo);
     }
 
     @PutMapping("/user/password")
-    public Response<?> password(@RequestBody PasswordRequestDTO pass){
+    public Response<?> password(@RequestBody PasswordRequestDTO pass) {
         String id = pass.getId();
         String oldPwd = pass.getOldpassword();
         String newPwd = pass.getNewpassword();
         String rePwd = pass.getPasswordrepeat();
 
-        if(!StringUtils.hasLength(oldPwd) || !StringUtils.hasLength(newPwd) ||
-        !StringUtils.hasLength(rePwd) || !StringUtils.hasLength(id) ){
-            return new Response<>(400,"Bad Request",null);
+        if (!StringUtils.hasLength(oldPwd) || !StringUtils.hasLength(newPwd) ||
+                !StringUtils.hasLength(rePwd) || !StringUtils.hasLength(id)) {
+            return new Response<>(400, "Bad Request", null);
         }
 
         boolean IfExist = service.checkIfUserIdExists(id);
-        if(!IfExist){
-            return new Response<>(404,"Not Found",null);
+        if (!IfExist) {
+            return new Response<>(404, "Not Found", null);
         }
 
-        if(!rePwd.equals(newPwd)){
-            return new Response<>(400,"Not same Password",null);
+        if (!rePwd.equals(newPwd)) {
+            return new Response<>(400, "Not same Password", null);
         }
 
         String username = service.findUsernameByUserId(id);
@@ -101,8 +101,8 @@ public class UserController {
         boolean equalPassword = service.checkPassword
                 (username, oldPwd);
         if (equalPassword) {
-             service.updatePassword(Integer.parseInt(id),oldPwd,newPwd);
-             return new Response<>(200,"Successfully update",null);
+            service.updatePassword(Integer.parseInt(id), oldPwd, newPwd);
+            return new Response<>(200, "Successfully update", null);
         } else {
             return new Response<>
                     (401, "Incorrect  OldPassword", null);
