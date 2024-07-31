@@ -87,4 +87,9 @@ public class BlogController {
     public Response<?> getLatestBlogsByUser(@PathVariable int author) {
         return new Response<>(200, "OK", service.readLatestBlogsByUser(author));
     }
+
+    @GetMapping("/all/{author}")
+    public Response<?> getBlogsByUser(@PathVariable int author) {
+        return new Response<>(200, "OK", service.readBlogsByUser(author));
+    }
 }

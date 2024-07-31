@@ -61,4 +61,8 @@ public class BlogService {
             mapper.likeBlogCount(blogId);
         }
     }
+
+    public List<BlogResponseDTO> readBlogsByUser(int author) {
+        return mapper.readBlogsByUser(author);
+    }
 }

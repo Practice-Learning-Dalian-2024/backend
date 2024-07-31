@@ -23,21 +23,10 @@
         WHERE id = #{id}
     </update>
     <select id="read" resultType="io.blog.model.response.BlogResponseDTO">
-        SELECT id,
+        SELECT blog.id,
                author,
-               title,
-               content_path,
-               time,
-               category,
-               status,
-               brief,
-               like_count
-        FROM blog
-        WHERE id = #{id}
-    </select>
-    <select id="readAll" resultType="io.blog.model.response.BlogResponseDTO">
-        SELECT id,
-               author,
+               user_info.username,
+               user_info.name,
                title,
                content_path,
                time,
@@ -46,7 +35,23 @@
                brief,
                like_count,
                visitor_count
-        FROM blog
+        FROM blog JOIN user_info ON blog.author = user_info.id
+        WHERE id = #{id}
+    </select>
+    <select id="readAll" resultType="io.blog.model.response.BlogResponseDTO">
+        SELECT blog.id,
+               author,
+               user_info.username,
+               user_info.name,
+               title,
+               content_path,
+               time,
+               category,
+               status,
+               brief,
+               like_count,
+               visitor_count
+        FROM blog JOIN user_info ON blog.author = user_info.id
         ORDER BY time DESC
         LIMIT 20
     </select>
@@ -78,8 +83,10 @@
     </update>
     <select id="readByCategory"
             resultType="io.blog.model.response.BlogResponseDTO">
-        SELECT id,
+        SELECT blog.id,
                author,
+               user_info.username,
+               user_info.name,
                title,
                content_path,
                time,
@@ -88,14 +95,16 @@
                brief,
                like_count,
                visitor_count
-        FROM blog
+        FROM blog JOIN user_info ON blog.author = user_info.id
         WHERE category = #{category}
         ORDER BY time DESC
     </select>
     <select id="readMostPopularBlogs"
             resultType="io.blog.model.response.BlogResponseDTO">
-        SELECT id,
+        SELECT blog.id,
                author,
+               user_info.username,
+               user_info.name,
                title,
                content_path,
                time,
@@ -104,15 +113,17 @@
                brief,
                like_count,
                visitor_count
-        FROM blog
+        FROM blog JOIN user_info ON blog.author = user_info.id
         ORDER BY visitor_count DESC
         LIMIT 20
     </select>
 
     <select id="readLatestBlogsByUser"
             resultType="io.blog.model.response.BlogResponseDTO">
-        SELECT id,
+        SELECT blog.id,
                author,
+               user_info.username,
+               user_info.name,
                title,
                content_path,
                time,
@@ -121,9 +132,28 @@
                brief,
                like_count,
                visitor_count
-        FROM blog
+        FROM blog JOIN user_info ON blog.author = user_info.id
         WHERE author = #{author}
         ORDER BY time DESC
         LIMIT 20
+    </select>
+
+    <select id="readBlogsByUser"
+            resultType="io.blog.model.response.BlogResponseDTO">
+        SELECT blog.id,
+               author,
+               user_info.username,
+               user_info.name,
+               title,
+               content_path,
+               time,
+               category,
+               status,
+               brief,
+               like_count,
+               visitor_count
+        FROM blog JOIN user_info ON blog.author = user_info.id
+        WHERE author = #{author}
+        ORDER BY time DESC
     </select>
 </mapper>

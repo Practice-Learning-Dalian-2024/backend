@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 public class BlogResponseDTO {
     private int id;
     private int author;
+    private String name;
+    private String username;
     private String title;
     private String contentPath;
     private String time;
