@@ -39,6 +39,14 @@ public class BlogService {
         return mapper.readAll();
     }
 
+    public List<BlogResponseDTO> readByCategory(int category) {
+        return mapper.readByCategory(category);
+    }
+
+    public List<BlogResponseDTO> readMostPopularBlogs(int userId) {
+        return mapper.readMostPopularBlogs(userId);
+    }
+
     public void like(LikeRequestDTO like) {
         int blogId = like.getBlogId();
         if (mapper.ifLikeBlog(like)) {

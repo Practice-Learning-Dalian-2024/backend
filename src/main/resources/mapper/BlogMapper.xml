@@ -9,13 +9,11 @@
         INSERT INTO blog (author, title, content_path, category, brief)
         VALUES (#{author}, #{title}, #{contentPath}, #{category}, #{brief})
     </insert>
-
     <delete id="delete">
         DELETE
         FROM blog
         WHERE id = #{id}
     </delete>
-
     <update id="update">
         UPDATE blog
         SET title       = #{title},
@@ -24,7 +22,6 @@
             content_path= #{contentPath}
         WHERE id = #{id}
     </update>
-
     <select id="read" resultType="io.blog.model.response.BlogResponseDTO">
         SELECT id,
                author,
@@ -38,7 +35,6 @@
         FROM blog
         WHERE id = #{id}
     </select>
-
     <select id="readAll" resultType="io.blog.model.response.BlogResponseDTO">
         SELECT id,
                author,
@@ -48,39 +44,67 @@
                category,
                status,
                brief,
-               like_count
+               like_count,
+                visitor_count
         FROM blog
         ORDER BY time DESC
+        LIMIT 20
     </select>
-
     <insert id="likeBlog">
         INSERT INTO like_record (blog_id, user_id)
         VALUES (#{blogId}, #{userId})
     </insert>
-
     <delete id="unlikeBlog">
         DELETE
         FROM like_record
         WHERE blog_id = #{blogId}
           AND user_id = #{userId}
     </delete>
-
     <select id="ifLikeBlog" resultType="boolean">
         SELECT CASE WHEN COUNT(1) > 0 THEN TRUE ELSE FALSE END
         FROM like_record
         WHERE blog_id = #{blogId}
           AND user_id = #{userId}
     </select>
-
     <update id="likeBlogCount">
         UPDATE blog
         SET like_count = like_count + 1
         WHERE id = #{blogId}
     </update>
-
     <update id="unlikeBlogCount">
         UPDATE blog
         SET like_count = like_count - 1
         WHERE id = #{blogId}
     </update>
+    <select id="readByCategory" resultType="io.blog.model.response.BlogResponseDTO">
+        SELECT id,
+               author,
+               title,
+               content_path,
+               time,
+               category,
+               status,
+               brief,
+               like_count,
+               visitor_count
+        FROM blog
+        WHERE category = #{category}
+        ORDER BY time DESC
+    </select>
+    <select id="readMostPopularBlogs"
+            resultType="io.blog.model.response.BlogResponseDTO">
+        SELECT id,
+               author,
+               title,
+               content_path,
+               time,
+               category,
+               status,
+               brief,
+               like_count,
+               visitor_count
+        FROM blog
+        ORDER BY visitor_count DESC
+        LIMIT 20
+    </select>
 </mapper>
