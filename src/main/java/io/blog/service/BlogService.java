@@ -31,9 +31,7 @@ public class BlogService {
     }
 
     public BlogResponseDTO read(int id) {
-        BlogResponseDTO blog = mapper.read(id);
-
-        return blog;
+        return mapper.read(id);
         // TODO: Query like, view, comment
     }
 
