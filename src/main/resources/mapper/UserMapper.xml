@@ -15,14 +15,14 @@
 
     <update id="update">
         UPDATE user_info
-        SET username    = #{username},
-            name        = #{name},
+        SET name        = #{name},
             gender      = #{gender},
             avatar_path = #{avatarPath},
             email       = #{email},
             phone       = #{phone},
             site        = #{site},
-            bio         = #{bio}
+            bio         = #{bio},
+            birthday    = #{birthday}
         WHERE id = #{id}
     </update>
 

@@ -20,4 +20,5 @@ public class UserResponseDTO {
     private String phone;
     private String site;
     private String bio;
+    private String birthday;
 }

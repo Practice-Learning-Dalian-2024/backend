@@ -10,6 +10,7 @@ import io.blog.service.UserService;
 import io.blog.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -70,9 +71,10 @@ public class UserController {
     }
 
     @PutMapping("/user/edit")
-    public Response<?> edit(@RequestBody UserInfo userInfo) {
+    public Response<?> edit(@RequestBody @Validated UserInfo userInfo) {
         service.updateInformation(userInfo);
-        return new Response<>(200, "Successfully", userInfo);
+        UserResponseDTO userResponseDTO = service.UserInfoReturn(userInfo.getId());
+        return new Response<>(200, "Successfully", userResponseDTO);
     }
 
     @PutMapping("/user/password")
