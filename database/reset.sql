@@ -32,20 +32,20 @@ CREATE TABLE IF NOT EXISTS admin
     user_id INT REFERENCES user_info (id) ON DELETE CASCADE NOT NULL
 );
 
-            DROP TABLE IF EXISTS blog CASCADE;
-            CREATE TABLE IF NOT EXISTS blog
-            (
-                id            SERIAL PRIMARY KEY,
-                author        INT REFERENCES user_info (id) NOT NULL,
-                title         VARCHAR(255)                  NOT NULL,
-                content_path  TEXT                          NOT NULL,
-                time          TIMESTAMP                     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                category      SMALLINT                      NOT NULL,
-                visitor_count INT                           NOT NULL DEFAULT 0,
-                like_count    INT                           NOT NULL DEFAULT 0,
-                status        SMALLINT                      NOT NULL DEFAULT 0,
-                brief         VARCHAR(255)                  NOT NULL
-            );
+DROP TABLE IF EXISTS blog CASCADE;
+CREATE TABLE IF NOT EXISTS blog
+(
+    id            SERIAL PRIMARY KEY,
+    author        INT REFERENCES user_info (id) NOT NULL,
+    title         VARCHAR(255)                  NOT NULL,
+    content_path  TEXT                          NOT NULL,
+    time          TIMESTAMP                     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    category      SMALLINT                      NOT NULL,
+    visitor_count INT                           NOT NULL DEFAULT 0,
+    like_count    INT                           NOT NULL DEFAULT 0,
+    status        SMALLINT                      NOT NULL DEFAULT 0,
+    brief         VARCHAR(255)                  NOT NULL
+);
 
 DROP TABLE IF EXISTS comment CASCADE;
 CREATE TABLE IF NOT EXISTS comment

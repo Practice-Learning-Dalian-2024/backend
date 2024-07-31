@@ -35,7 +35,8 @@
                brief,
                like_count,
                visitor_count
-        FROM blog JOIN user_info ON blog.author = user_info.id
+        FROM blog
+                 JOIN user_info ON blog.author = user_info.id
         WHERE blog.id = #{id}
     </select>
     <select id="readAll" resultType="io.blog.model.response.BlogResponseDTO">
@@ -51,7 +52,8 @@
                brief,
                like_count,
                visitor_count
-        FROM blog JOIN user_info ON blog.author = user_info.id
+        FROM blog
+                 JOIN user_info ON blog.author = user_info.id
         ORDER BY time DESC
         LIMIT 20
     </select>
@@ -95,7 +97,8 @@
                brief,
                like_count,
                visitor_count
-        FROM blog JOIN user_info ON blog.author = user_info.id
+        FROM blog
+                 JOIN user_info ON blog.author = user_info.id
         WHERE category = #{category}
         ORDER BY time DESC
     </select>
@@ -113,7 +116,8 @@
                brief,
                like_count,
                visitor_count
-        FROM blog JOIN user_info ON blog.author = user_info.id
+        FROM blog
+                 JOIN user_info ON blog.author = user_info.id
         ORDER BY visitor_count DESC
         LIMIT 20
     </select>
@@ -132,7 +136,8 @@
                brief,
                like_count,
                visitor_count
-        FROM blog JOIN user_info ON blog.author = user_info.id
+        FROM blog
+                 JOIN user_info ON blog.author = user_info.id
         WHERE author = #{author}
         ORDER BY time DESC
         LIMIT 20
@@ -152,7 +157,8 @@
                brief,
                like_count,
                visitor_count
-        FROM blog JOIN user_info ON blog.author = user_info.id
+        FROM blog
+                 JOIN user_info ON blog.author = user_info.id
         WHERE author = #{author}
         ORDER BY time DESC
     </select>
@@ -170,8 +176,9 @@
                brief,
                like_count,
                visitor_count
-        FROM blog JOIN user_info ON blog.author = user_info.id
-                  JOIN follow ON user_info.id = follow.followee
+        FROM blog
+                 JOIN user_info ON blog.author = user_info.id
+                 JOIN follow ON user_info.id = follow.followee
         WHERE follow.follower = #{userId}
     </select>
 </mapper>
