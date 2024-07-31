@@ -28,4 +28,8 @@ public interface BlogMapper {
     void likeBlogCount(int blogId);
 
     void unlikeBlogCount(int blogId);
+
+    List<BlogResponseDTO> readByCategory(int category);
+
+    List<BlogResponseDTO> readMostPopularBlogs(int userId);
 }
