@@ -107,4 +107,10 @@
         FROM user_info
         WHERE id = #{id}
     </select>
+
+    <select id="getIdByUsername" resultType="Integer">
+        SELECT id
+        FROM user_info
+        WHERE username = #{username}
+    </select>
 </mapper>

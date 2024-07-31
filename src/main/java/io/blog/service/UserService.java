@@ -72,4 +72,8 @@ public class UserService {
         Integer user_id = Integer.parseInt(id);
         return mapper.findUsernameByUserId(user_id);
     }
+
+    public Integer getId(String username) {
+        return mapper.getIdByUsername(username);
+    }
 }

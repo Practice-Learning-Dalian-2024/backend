@@ -16,26 +16,27 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/")
 public class UserController {
-    private final UserService userService;
+    private final UserService service;
 
     @Autowired
     public UserController(UserService service) {
-        this.userService = service;
+        this.service = service;
     }
 
     @PostMapping("/login")
     public Response<?> login(@RequestBody LoginRequestDTO log) {
-        boolean notExist = userService.checkIfUsernameExists(log.getUsername());
+        boolean notExist = service.checkIfUsernameExists(log.getUsername());
         if (notExist) {
             return new Response<>
                     (401, "Incorrect username or password", null);
         }
 
-        boolean equalPassword = userService.checkPassword
+        boolean equalPassword = service.checkPassword
                 (log.getUsername(), log.getPassword());
         if (equalPassword) {
+            String username = log.getUsername();
             LoginResponseDTO resp = new LoginResponseDTO
-                    (userService.getRole(log.getUsername()));
+                    (service.getId(username), service.getRole(username));
             return new Response<>(200, "Successfully login", resp);
         } else {
             return new Response<>
@@ -45,9 +46,9 @@ public class UserController {
 
     @PostMapping("/register")
     public Response<?> register(@RequestBody RegisterRequestDTO reg) {
-        boolean notExist = userService.checkIfUsernameExists(reg.getUsername());
+        boolean notExist = service.checkIfUsernameExists(reg.getUsername());
         if (notExist) {
-            userService.register(reg.getUsername(), reg.getPassword());
+            service.register(reg.getUsername(), reg.getPassword());
             return new Response<>
                     (200, "Successfully registered", null);
         } else {
@@ -58,9 +59,9 @@ public class UserController {
 
     @GetMapping("/user/{user_id}")
     public Response<?> UserInfo(@PathVariable String user_id){
-        boolean IfExist = userService.checkIfUserIdExists(user_id);
+        boolean IfExist = service.checkIfUserIdExists(user_id);
         if(IfExist){
-            UserResponseDTO resp = userService.UserInfoReturn
+            UserResponseDTO resp = service.UserInfoReturn
                     (Integer.parseInt(user_id));
             return new Response<>(200,"Successfully",resp);
         }else {
@@ -70,7 +71,7 @@ public class UserController {
 
     @PutMapping("/user/edit")
     public Response<?> edit(@RequestBody UserInfo userInfo){
-        userService.updateInformation(userInfo);
+        service.updateInformation(userInfo);
         return new Response<>(200,"Successfully",userInfo);
     }
 
@@ -86,7 +87,7 @@ public class UserController {
             return new Response<>(400,"Bad Request",null);
         }
 
-        boolean IfExist = userService.checkIfUserIdExists(id);
+        boolean IfExist = service.checkIfUserIdExists(id);
         if(!IfExist){
             return new Response<>(404,"Not Found",null);
         }
@@ -95,12 +96,12 @@ public class UserController {
             return new Response<>(400,"Not same Password",null);
         }
 
-        String username = userService.findUsernameByUserId(id);
+        String username = service.findUsernameByUserId(id);
 
-        boolean equalPassword = userService.checkPassword
+        boolean equalPassword = service.checkPassword
                 (username, oldPwd);
         if (equalPassword) {
-             userService.updatePassword(Integer.parseInt(id),oldPwd,newPwd);
+             service.updatePassword(Integer.parseInt(id),oldPwd,newPwd);
              return new Response<>(200,"Successfully update",null);
         } else {
             return new Response<>
