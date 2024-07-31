@@ -34,4 +34,10 @@ public interface UserMapper {
     String findUsernameByUserId(Integer userId);
 
     int getIdByUsername(String username);
+
+    void follow(int follower, int followee);
+
+    void unfollow(int follower, int followee);
+
+    boolean isFollowing(int follower, int followee);
 }

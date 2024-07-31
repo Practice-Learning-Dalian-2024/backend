@@ -13,6 +13,11 @@
         VALUES (#{username}, #{salt}, #{passwordHash})
     </insert>
 
+    <insert id="follow">
+        INSERT INTO follow (follower, followee)
+        VALUES (#{follower}, #{followee})
+    </insert>
+
     <update id="update">
         UPDATE user_info
         SET name        = #{name},
@@ -37,6 +42,13 @@
         DELETE
         FROM user_info
         WHERE id = #{id}
+    </delete>
+
+    <delete id="unfollow">
+        DELETE
+        FROM follow
+        WHERE follower = #{follower}
+          AND followee = #{followee}
     </delete>
 
     <select id="read" resultType="io.blog.model.response.UserResponseDTO">
@@ -115,5 +127,13 @@
         SELECT id
         FROM user_info
         WHERE username = #{username}
+    </select>
+
+    <select id="isFollowing" resultType="boolean">
+        SELECT COUNT(*) = 1
+        FROM follow
+        WHERE follower = #{follower}
+          AND followee = #{followee}
+        LIMIT 1
     </select>
 </mapper>

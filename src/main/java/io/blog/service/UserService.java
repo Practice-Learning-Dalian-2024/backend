@@ -75,4 +75,12 @@ public class UserService {
     public Integer getId(String username) {
         return mapper.getIdByUsername(username);
     }
+
+    public void follow(int follower, int followee) {
+        if(mapper.isFollowing(follower, followee)) {
+            mapper.unfollow(follower, followee);
+        } else {
+            mapper.follow(follower, followee);
+        }
+    }
 }

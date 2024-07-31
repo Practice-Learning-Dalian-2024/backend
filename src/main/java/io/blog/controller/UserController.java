@@ -1,6 +1,7 @@
 package io.blog.controller;
 
 import io.blog.model.database.UserInfo;
+import io.blog.model.request.FollowRequestDTO;
 import io.blog.model.request.LoginRequestDTO;
 import io.blog.model.request.PasswordRequestDTO;
 import io.blog.model.request.RegisterRequestDTO;
@@ -109,5 +110,11 @@ public class UserController {
             return new Response<>
                     (401, "Incorrect  OldPassword", null);
         }
+    }
+
+    @PostMapping("/follow")
+    public Response<?> follow(@RequestBody FollowRequestDTO follow) {
+        service.follow(follow.getFollowerId(), follow.getFolloweeId());
+        return new Response<>(200, "Successfully (un)follow", null);
     }
 }
