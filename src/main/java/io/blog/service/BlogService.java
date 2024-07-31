@@ -32,7 +32,9 @@ public class BlogService {
 
     public BlogResponseDTO read(int id) {
         BlogResponseDTO blog = mapper.read(id);
-        throw new RuntimeException("TODO"); // TODO
+
+        return blog;
+        // TODO: Query like, view, comment
     }
 
     public List<BlogResponseDTO> readAll() {
